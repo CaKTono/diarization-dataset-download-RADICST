@@ -16,6 +16,7 @@ https://www.youtube.com/watch?v=GOqEl4ADyVk -> 2 people
 https://www.youtube.com/watch?v=ru44DngJYoA -> 2 people
 https://www.youtube.com/watch?v=lBVtvOpU80Q ->  7 people (gitlab)
 https://www.youtube.com/watch?v=rOqgRiNMVqg -> 9 people (gitlab)
+https://youtu.be/k8K6wQLxooU?si=HrHn1wsYw6CqXyxm -> 20 people (gitlab)
 https://www.youtube.com/watch?v=DcWqzZ3I2cY -> 2 people (led Fridman jeff bezos)
 https://www.youtube.com/watch?v=sY8aFSY2zv4 -> 2 people (led Fridman Jordan Peterson)
 https://www.youtube.com/watch?v=qCbfTN-caFI -> 2 people (led Fridman Trump)
@@ -23,6 +24,11 @@ https://www.youtube.com/watch?v=T3FC7qIAGZk -> 2 people (led Fridman Andrew Bust
 https://www.youtube.com/watch?v=Oa0ZHfcalCM -> What do tech pioneers think about the AI revolution? The Engineers - BBC World Service
 https://www.youtube.com/watch?v=2VXbY4V7LCk -> John Mearsheimer: The Palestinian Genocide and How the West Has Been Deceived Into Supporting It - Tucker Carlson
 https://www.youtube.com/watch?v=sHaJFMbgxu4 -> indian accent (On YouTube, Income, Business, Career, Content Creators & Beast Games | FO291 Raj Shamani)
+https://youtu.be/lyzvYySE2aU?si=jkiAWAgEcxz6HG3U -> 5 people talking (Canadian robotics council)
+https://www.youtube.com/watch?v=YJQSuUZdcV4 -> capitalism vs socialism, 2 people, debate. 
+https://www.youtube.com/watch?v=9YtDu0CsN-Y -> outdoor vlog, 2 people
+https://www.youtube.com/watch?v=PZHD6YwCZWM -> outdoor vlog, multiple people
+
 
 '''
 
@@ -41,11 +47,11 @@ https://www.youtube.com/watch?v=he1gbtoWtdI -> podcast (3 people) zh-TW
 https://www.youtube.com/watch?v=m3CsZlYzMNI -> podcast (2 people) 
 https://www.youtube.com/watch?v=kVgHR2ftJ2s -> podcast (2 people)
 https://www.youtube.com/watch?v=5HeSYDNA10E -> podcast (2 people)
-https://www.youtube.com/watch?v=CMX832pYYqU -> podcast (2 people)
-https://www.youtube.com/watch?v=87XNa4xP0jM -> podcast (2 people)
-https://www.youtube.com/watch?v=R9SS02XDWJQ -> podcast (2 people)
+https://www.youtube.com/watch?v=CMX832pYYqU -> podcast (2 people) (audio only)
+https://www.youtube.com/watch?v=87XNa4xP0jM -> podcast (2 people) (audio only)
+https://www.youtube.com/watch?v=R9SS02XDWJQ -> podcast (2 people) (audio only)
 https://www.youtube.com/watch?v=wstsYC8D4gc -> podcast (2 people)
-https://www.youtube.com/watch?v=y3TTGsG8_uE -> podcast (2 people)
+https://www.youtube.com/watch?v=y3TTGsG8_uE -> podcast (2 people) (audio only)
 https://www.youtube.com/watch?v=ktEw3JhSnoU -> podcast (2 people)
 https://www.youtube.com/watch?v=MHiceB78f2Y -> podcast (5 people)
 '''

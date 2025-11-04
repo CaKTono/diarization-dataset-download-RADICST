@@ -29,13 +29,14 @@ from datetime import datetime
 import time
 
 class BatchDownloader:
-    def __init__(self, input_file, media_type='audio', workers=3, dry_run=False):
+    def __init__(self, input_file, media_type='audio', workers=3, dry_run=False, enable_logging=True):
         self.input_file = input_file
         self.media_type = media_type
         self.workers = workers
         self.dry_run = dry_run
+        self.enable_logging = enable_logging
         self.progress_file = 'download_progress.json'
-        self.log_file = f'download_log_{datetime.now().strftime("%Y%m%d_%H%M%S")}.txt'
+        self.log_file = f'download_log_{datetime.now().strftime("%Y%m%d_%H%M%S")}.txt' if enable_logging else None
         self.completed = self.load_progress()
 
     def log(self, message, also_print=True):
@@ -43,8 +44,10 @@ class BatchDownloader:
         timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         log_msg = f"[{timestamp}] {message}"
 
-        with open(self.log_file, 'a', encoding='utf-8') as f:
-            f.write(log_msg + '\n')
+        # Only write to file if logging is enabled
+        if self.enable_logging and self.log_file:
+            with open(self.log_file, 'a', encoding='utf-8') as f:
+                f.write(log_msg + '\n')
 
         if also_print:
             print(message)
@@ -295,7 +298,8 @@ class BatchDownloader:
         if self.dry_run:
             self.log(f"🧪 Dry run: {len(results['dry_run'])}")
         self.log(f"\n⏱️  Total time: {elapsed_time:.1f} seconds ({elapsed_time/60:.1f} minutes)")
-        self.log(f"📄 Log file: {self.log_file}")
+        if self.enable_logging:
+            self.log(f"📄 Log file: {self.log_file}")
         self.log("=" * 80)
 
         # Show failed videos for retry
@@ -323,6 +327,9 @@ Examples:
 
   # Resume interrupted downloads (just run the same command again)
   python batch_download.py --input list.csv --media-type video --workers 3
+
+  # Disable logging to file (console output only)
+  python batch_download.py --input list.csv --media-type video --workers 3 --no-log
         """
     )
 
@@ -352,6 +359,12 @@ Examples:
         help='Test run without actually downloading'
     )
 
+    parser.add_argument(
+        '--no-log',
+        action='store_true',
+        help='Disable logging to file (only print to console)'
+    )
+
     args = parser.parse_args()
 
     # Validate input file exists
@@ -369,7 +382,8 @@ Examples:
         input_file=args.input,
         media_type=args.media_type,
         workers=args.workers,
-        dry_run=args.dry_run
+        dry_run=args.dry_run,
+        enable_logging=not args.no_log
     )
 
     try:
