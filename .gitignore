@@ -1,0 +1,76 @@
+# Downloaded Dataset Directories
+english/
+chinese/
+indo/
+music/
+
+# Progress and Log Files
+download_progress.json
+download_log_*.txt
+
+# Python Cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Virtual Environments
+venv/
+env/
+ENV/
+.venv
+
+# IDE Settings
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Thumbnails
+._*
+
+# Files that might appear in the root of a volume
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+
+# Directories potentially created on remote AFP share
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+
+# Temporary test directories
+test_video/
+test_audio/
+
+# Audio/Video files (in case any are in root)
+*.mp3
+*.mp4
+*.wav
+*.webm
+*.m4a
+
+# Large data files
+*.zip
+*.tar
+*.tar.gz
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# Environment variables
+.env
+.env.local

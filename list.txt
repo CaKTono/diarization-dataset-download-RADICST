@@ -1,0 +1,55 @@
+yt-dlp --list-subs "https://www.youtube.com/watch?v=CoadcmchwHc" 
+
+Youtube link:
+
+
+'''
+https://www.youtube.com/watch?v=oX7OduG1YmI&t=39s ->2 people 
+https://www.youtube.com/watch?v=7ARBJQn6QkM&t=59s -> 2 people
+https://www.youtube.com/watch?v=7iD6n9bRZns&t=423s -> 2 people
+https://www.youtube.com/watch?v=hmtuvNfytjM&t=5s -> 2 people
+https://www.youtube.com/watch?v=BEWz4SXfyCQ -> 3 people
+https://www.youtube.com/watch?v=cwSXDr7XkNc -> 20 people
+https://www.youtube.com/watch?v=lhFU5H5KPFE -> 2 people
+https://youtu.be/BlN7RIHu03I?si=etkR4qxHbPxDn45u -> 3 people
+https://www.youtube.com/watch?v=GOqEl4ADyVk -> 2 people
+https://www.youtube.com/watch?v=ru44DngJYoA -> 2 people
+https://www.youtube.com/watch?v=lBVtvOpU80Q ->  7 people (gitlab)
+https://www.youtube.com/watch?v=rOqgRiNMVqg -> 9 people (gitlab)
+https://www.youtube.com/watch?v=DcWqzZ3I2cY -> 2 people (led Fridman jeff bezos)
+https://www.youtube.com/watch?v=sY8aFSY2zv4 -> 2 people (led Fridman Jordan Peterson)
+https://www.youtube.com/watch?v=qCbfTN-caFI -> 2 people (led Fridman Trump)
+https://www.youtube.com/watch?v=T3FC7qIAGZk -> 2 people (led Fridman Andrew Bustamante)
+https://www.youtube.com/watch?v=Oa0ZHfcalCM -> What do tech pioneers think about the AI revolution? The Engineers - BBC World Service
+https://www.youtube.com/watch?v=2VXbY4V7LCk -> John Mearsheimer: The Palestinian Genocide and How the West Has Been Deceived Into Supporting It - Tucker Carlson
+https://www.youtube.com/watch?v=sHaJFMbgxu4 -> indian accent (On YouTube, Income, Business, Career, Content Creators & Beast Games | FO291 Raj Shamani)
+
+'''
+
+python download_yt.py "https://www.youtube.com/watch?v=CoadcmchwHc" ./english en
+
+
+# chinese (zh)
+
+'''
+https://www.youtube.com/watch?v=J4AKpH47mko&t=51s -> 2 people zh-Hans
+https://www.youtube.com/watch?v=77VBHjMWISo -> 3 people zh
+https://www.youtube.com/watch?v=X237Q4jtvjQ -> 3 people zh
+https://www.youtube.com/watch?v=8V_FFbfw2Xk -> News
+https://www.youtube.com/watch?v=pDxi9MljStw -> podcast (3 people) zh-Hans
+https://www.youtube.com/watch?v=he1gbtoWtdI -> podcast (3 people) zh-TW
+https://www.youtube.com/watch?v=m3CsZlYzMNI -> podcast (2 people) 
+https://www.youtube.com/watch?v=kVgHR2ftJ2s -> podcast (2 people)
+https://www.youtube.com/watch?v=5HeSYDNA10E -> podcast (2 people)
+https://www.youtube.com/watch?v=CMX832pYYqU -> podcast (2 people)
+https://www.youtube.com/watch?v=87XNa4xP0jM -> podcast (2 people)
+https://www.youtube.com/watch?v=R9SS02XDWJQ -> podcast (2 people)
+https://www.youtube.com/watch?v=wstsYC8D4gc -> podcast (2 people)
+https://www.youtube.com/watch?v=y3TTGsG8_uE -> podcast (2 people)
+https://www.youtube.com/watch?v=ktEw3JhSnoU -> podcast (2 people)
+https://www.youtube.com/watch?v=MHiceB78f2Y -> podcast (5 people)
+'''
+
+python download_yt.py "yt-dlp --list-subs "https://www.youtube.com/watch?v=CoadcmchwHc" " ./indo
+
+yt-dlp --list-subs "https://www.youtube.com/watch?v=5HeSYDNA10E"
