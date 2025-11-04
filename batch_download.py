@@ -215,9 +215,45 @@ class BatchDownloader:
             )
 
             if result.returncode == 0:
-                self.save_progress(url)
-                self.log(f"✅ Success: {url} ({metadata})")
-                return {'status': 'success', 'url': url, 'metadata': metadata}
+                # Verify the download actually succeeded by checking for completed media files
+                try:
+                    if self.media_type == 'video':
+                        # Look for video_N.mp4 files (not .part files)
+                        media_files = [f for f in os.listdir(output_dir)
+                                      if (f.startswith('video_') or f == 'video.mp4')
+                                      and f.endswith('.mp4')
+                                      and not f.endswith('.part')]
+                    else:
+                        # Look for audio_N.mp3 files (not .part files)
+                        media_files = [f for f in os.listdir(output_dir)
+                                      if (f.startswith('audio_') or f == 'audio.mp3')
+                                      and f.endswith('.mp3')
+                                      and not f.endswith('.part')]
+
+                    if media_files:
+                        # Verify file is not empty
+                        media_file_path = os.path.join(output_dir, media_files[0])
+                        if os.path.getsize(media_file_path) > 1024:  # At least 1KB
+                            self.save_progress(url)
+                            self.log(f"✅ Success: {url} ({metadata}) - File: {media_files[0]}")
+                            return {'status': 'success', 'url': url, 'metadata': metadata}
+                        else:
+                            error_msg = f"Downloaded file is empty or too small: {media_files[0]}"
+                            self.log(f"❌ Failed: {url} - {error_msg}")
+                            return {'status': 'failed', 'url': url, 'metadata': metadata, 'error': error_msg}
+                    else:
+                        # Check if there are .part files indicating incomplete download
+                        part_files = [f for f in os.listdir(output_dir) if f.endswith('.part')]
+                        if part_files:
+                            error_msg = f"Download incomplete - found .part file: {part_files[0]}"
+                        else:
+                            error_msg = f"Download completed but no {self.media_type} file found"
+                        self.log(f"❌ Failed: {url} - {error_msg}")
+                        return {'status': 'failed', 'url': url, 'metadata': metadata, 'error': error_msg}
+                except Exception as e:
+                    error_msg = f"Error verifying download: {str(e)}"
+                    self.log(f"❌ Failed: {url} - {error_msg}")
+                    return {'status': 'failed', 'url': url, 'metadata': metadata, 'error': error_msg}
             else:
                 error_msg = result.stderr[-500:] if result.stderr else 'Unknown error'
                 self.log(f"❌ Failed: {url} - {error_msg}")
