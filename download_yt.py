@@ -138,7 +138,7 @@ def check_manual_transcript_exists(url):
         print(f"Error checking transcripts: {e}")
         return False
 
-def download_audio(url, output_dir):
+def download_audio(url, output_dir, video_index=None):
     """
     Download audio using yt-dlp.
     First, it tries to download the best audio-only stream ('ba') for speed.
@@ -147,8 +147,14 @@ def download_audio(url, output_dir):
     """
     print("\n📥 Downloading audio...")
     print("-" * 60)
-    
-    output_template = os.path.join(output_dir, "audio.%(ext)s")
+
+    # Use video index in filename if provided
+    if video_index:
+        filename = f"audio_{video_index}.%(ext)s"
+    else:
+        filename = "audio.%(ext)s"
+
+    output_template = os.path.join(output_dir, filename)
     
     try:
         # --- First Attempt: Try the fast audio-only method ---
@@ -184,7 +190,8 @@ def download_audio(url, output_dir):
         # --- Final Result ---
         print("-" * 60)
         if result.returncode == 0:
-            print("✓ Audio downloaded successfully: audio.mp3")
+            final_filename = f"audio_{video_index}.mp3" if video_index else "audio.mp3"
+            print(f"✓ Audio downloaded successfully: {final_filename}")
             return True
         else:
             print("✗ Audio download failed after all attempts.")
@@ -198,7 +205,7 @@ def download_audio(url, output_dir):
         print(f"✗ An unexpected error occurred during audio download: {e}")
         return False
 
-def download_video(url, output_dir):
+def download_video(url, output_dir, video_index=None):
     """
     Download video in the highest quality using yt-dlp.
     Downloads the best video+audio combination available.
@@ -206,7 +213,13 @@ def download_video(url, output_dir):
     print("\n📥 Downloading video...")
     print("-" * 60)
 
-    output_template = os.path.join(output_dir, "video.%(ext)s")
+    # Use video index in filename if provided
+    if video_index:
+        filename = f"video_{video_index}.%(ext)s"
+    else:
+        filename = "video.%(ext)s"
+
+    output_template = os.path.join(output_dir, filename)
 
     try:
         print("🚀 Downloading highest quality video (best video+audio)...")
@@ -223,7 +236,8 @@ def download_video(url, output_dir):
 
         print("-" * 60)
         if result.returncode == 0:
-            print("✓ Video downloaded successfully: video.mp4")
+            final_filename = f"video_{video_index}.mp4" if video_index else "video.mp4"
+            print(f"✓ Video downloaded successfully: {final_filename}")
             return True
         else:
             print("✗ Video download failed.")
@@ -544,12 +558,12 @@ def process_video(url, base_output_dir, lang_code, media_type='audio'):
 
     save_video_details(metadata, output_dir)
 
-    # Download media based on type
+    # Download media based on type with video index
     if media_type == 'video':
-        media_success = download_video(url, output_dir)
+        media_success = download_video(url, output_dir, video_num)
         media_label = "Video"
     else:
-        media_success = download_audio(url, output_dir)
+        media_success = download_audio(url, output_dir, video_num)
         media_label = "Audio"
 
     transcript_success = save_transcript(transcript, output_dir)
