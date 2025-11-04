@@ -29,12 +29,13 @@ from datetime import datetime
 import time
 
 class BatchDownloader:
-    def __init__(self, input_file, media_type='audio', workers=3, dry_run=False, enable_logging=True):
+    def __init__(self, input_file, media_type='audio', workers=3, dry_run=False, enable_logging=True, output_folder='.'):
         self.input_file = input_file
         self.media_type = media_type
         self.workers = workers
         self.dry_run = dry_run
         self.enable_logging = enable_logging
+        self.output_folder = output_folder
         self.progress_file = 'download_progress.json'
         self.log_file = f'download_log_{datetime.now().strftime("%Y%m%d_%H%M%S")}.txt' if enable_logging else None
         self.completed = self.load_progress()
@@ -84,13 +85,13 @@ class BatchDownloader:
 
                 # Determine output directory
                 if language == 'english':
-                    output_dir = './english'
+                    output_dir = os.path.join(self.output_folder, 'english')
                 elif language == 'chinese':
-                    output_dir = './chinese'
+                    output_dir = os.path.join(self.output_folder, 'chinese')
                 elif language == 'indonesian' or language == 'indo':
-                    output_dir = './indo'
+                    output_dir = os.path.join(self.output_folder, 'indo')
                 else:
-                    output_dir = f'./{language}'
+                    output_dir = os.path.join(self.output_folder, language)
 
                 # Create metadata string
                 metadata_parts = []
@@ -137,7 +138,7 @@ class BatchDownloader:
                     videos.append({
                         'url': url,
                         'language': 'en',
-                        'output_dir': './english',
+                        'output_dir': os.path.join(self.output_folder, 'english'),
                         'metadata': metadata
                     })
 
@@ -159,7 +160,7 @@ class BatchDownloader:
                     videos.append({
                         'url': url,
                         'language': lang_code,
-                        'output_dir': './chinese',
+                        'output_dir': os.path.join(self.output_folder, 'chinese'),
                         'metadata': metadata
                     })
 
@@ -330,6 +331,9 @@ Examples:
 
   # Disable logging to file (console output only)
   python batch_download.py --input list.csv --media-type video --workers 3 --no-log
+
+  # Specify custom output folder
+  python batch_download.py --input list.csv --media-type video --output /path/to/dataset
         """
     )
 
@@ -365,6 +369,12 @@ Examples:
         help='Disable logging to file (only print to console)'
     )
 
+    parser.add_argument(
+        '--output',
+        default='.',
+        help='Output folder for downloads (default: current directory)'
+    )
+
     args = parser.parse_args()
 
     # Validate input file exists
@@ -377,13 +387,19 @@ Examples:
         print("❌ Error: download_yt.py not found in current directory")
         sys.exit(1)
 
+    # Create output folder if it doesn't exist
+    if args.output != '.' and not os.path.exists(args.output):
+        os.makedirs(args.output, exist_ok=True)
+        print(f"✓ Created output folder: {args.output}")
+
     # Create and run downloader
     downloader = BatchDownloader(
         input_file=args.input,
         media_type=args.media_type,
         workers=args.workers,
         dry_run=args.dry_run,
-        enable_logging=not args.no_log
+        enable_logging=not args.no_log,
+        output_folder=args.output
     )
 
     try:

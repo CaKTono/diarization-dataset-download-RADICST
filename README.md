@@ -28,11 +28,14 @@ python3 --version
 ### Download All Videos
 
 ```bash
-# Download as VIDEO (highest quality)
+# Download as VIDEO (highest quality) to current directory
 python3 batch_download.py --input list.csv --media-type video --workers 3
 
 # Download as AUDIO (MP3, smaller files)
 python3 batch_download.py --input list.csv --media-type audio --workers 5
+
+# Download to custom output folder
+python3 batch_download.py --input list.csv --media-type video --workers 3 --output /path/to/dataset
 ```
 
 ### Download Single Video
@@ -128,6 +131,8 @@ python3 batch_download.py --input list.csv --media-type video --workers 3
 - `--input` - Input file (CSV or TXT format, default: list.csv)
 - `--media-type` - Download as 'audio' or 'video' (default: audio)
 - `--workers` - Number of parallel downloads (default: 3, recommended: 2-5)
+- `--output` - Custom output folder (default: current directory)
+- `--no-log` - Disable logging to file (console output only)
 - `--dry-run` - Test mode without actual downloads
 
 **Worker Recommendations:**
@@ -276,9 +281,41 @@ grep "podcast" list.csv > podcasts_only.csv
 python3 batch_download.py --input podcasts_only.csv --media-type audio --workers 5
 ```
 
+### Custom Output Folder
+
+Download datasets to specific locations:
+
+```bash
+# Download to external drive
+python3 batch_download.py --input list.csv --media-type video --output /Volumes/ExternalDrive/datasets
+
+# Organize by project
+python3 batch_download.py --input list_projectA.csv --output ./datasets/projectA
+python3 batch_download.py --input list_projectB.csv --output ./datasets/projectB
+
+# Download to network storage
+python3 batch_download.py --input list.csv --output /mnt/nas/datasets/diarization
+```
+
+The output folder will be created automatically if it doesn't exist. Language subfolders (`english/`, `chinese/`) are created inside.
+
+### Disable Logging
+
+For cleaner console output without log files:
+
+```bash
+# No log file created (console output only)
+python3 batch_download.py --input list.csv --media-type video --workers 3 --no-log
+
+# Useful for testing or monitoring in real-time
+python3 batch_download.py --input list.csv --dry-run --no-log
+```
+
+Note: Progress tracking (`download_progress.json`) still works even with `--no-log`.
+
 ### Check Download Logs
 
-All activity is logged with timestamps:
+All activity is logged with timestamps (when logging is enabled):
 
 ```bash
 # View latest log
