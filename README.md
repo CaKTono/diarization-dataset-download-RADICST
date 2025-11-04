@@ -1,28 +1,14 @@
-# 10 Hours Multi-Language Audio/Video Dataset
+# Diarization-aware Multi-Language Audio/Video Dataset
 
 A curated multi-language dataset builder for speech recognition, speaker diarization, and audio processing research. Downloads YouTube videos with high-quality transcripts and automatic organization by language and transcript availability.
 
 ## 📊 Dataset Overview
 
 - **Languages**: English, Chinese (Simplified & Traditional)
-- **Total Videos**: 36+ curated videos
+- **Total Videos**: 39+ Videos
 - **Content Types**: Podcasts, interviews, meetings, documentaries, news
 - **Speaker Range**: 2-20 speakers per video
 - **Transcript Support**: Manual and auto-generated transcripts with word-level timestamps
-
-### Content Breakdown
-
-**English (20 videos)**
-- 9 Interviews (2-3 speakers)
-- 4 Podcasts (Lex Fridman series)
-- 2 Corporate Meetings (GitLab - 7-9 speakers)
-- 1 Conference (20 speakers)
-- 1 Documentary (BBC World Service)
-
-**Chinese (16 videos)**
-- 12 Podcasts (2-5 speakers)
-- 3 Interviews (3 speakers)
-- 1 News segment
 
 ## 🚀 Quick Start
 
@@ -302,14 +288,6 @@ ls -lt download_log_*.txt | head -1 | xargs cat
 tail -f download_log_*.txt
 ```
 
-### Estimate Download Time
-
-**Approximate times (depends on connection speed):**
-- Audio (36 videos, 5 workers): 1-2 hours
-- Video (36 videos, 3 workers): 3-5 hours
-- Single audio: 2-5 minutes per video
-- Single video: 5-15 minutes per video (varies by length)
-
 ## 🔧 Troubleshooting
 
 ### yt-dlp Not Found
@@ -432,18 +410,6 @@ Easy to add more languages by modifying `download_yt.py` line 260.
 - **Manual transcripts** (`tr/` folder): High accuracy, professionally created
 - **Auto-generated** (`no_tr/` folder): Good accuracy, may have errors
 - **Word-level timestamps**: Available for most auto-generated transcripts
-
-### Storage Requirements
-
-**Approximate sizes per video:**
-- Audio (MP3): 50-150 MB per hour
-- Video (MP4): 300-800 MB per hour
-- Transcripts: 0.5-2 MB per video
-
-**For 36 videos (estimated 10 hours total):**
-- Audio dataset: ~1-2 GB
-- Video dataset: ~3-8 GB
-- Transcripts: ~50 MB
 
 ## 📄 License
 
