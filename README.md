@@ -90,13 +90,11 @@ python3 download_yt.py "https://youtube.com/watch?v=..." ./chinese zh audio
 - ✅ **Auto Language Detection** - Automatically categorizes by language
 - ✅ **Transcript Management** - Separates manual vs auto-generated transcripts
 - ✅ **Progress Tracking** - Resume interrupted downloads
-- ✅ **Download Validation** - Verifies files are complete before marking as done
 - ✅ **Word-Level Timestamps** - Precise timing for each word
 - ✅ **Multiple Formats** - JSON (structured) and TXT (readable)
 - ✅ **Video Metadata** - Title, channel, views, description, duration
 - ✅ **Error Handling** - Continues on failures, logs all errors
 - ✅ **Dry Run Mode** - Test before downloading
-- ✅ **Cleanup Tools** - Fix incomplete downloads automatically
 
 ### Transcript Features
 
@@ -315,58 +313,6 @@ python3 batch_download.py --input list.csv --dry-run --no-log
 
 Note: Progress tracking (`download_progress.json`) still works even with `--no-log`.
 
-### Fix Incomplete Downloads
-
-The batch downloader now includes **automatic validation** to detect incomplete downloads. If downloads are interrupted or fail, you can clean them up and retry:
-
-```bash
-# Run the cleanup script
-python3 fix_incomplete_downloads.py
-```
-
-**What it does:**
-- ✅ Scans for folders with `.part` files (incomplete downloads)
-- ✅ Detects folders missing video/audio files
-- ✅ Shows you which downloads failed with their URLs
-- ✅ Removes incomplete folders and updates progress tracker
-- ✅ Creates backup of progress file before making changes
-
-**After cleanup**, re-run the batch download:
-```bash
-python3 batch_download.py --input list.csv --media-type video --workers 3
-```
-
-The script will now download only the failed videos.
-
-**Example output:**
-```
-🔍 Scanning for Incomplete Downloads
-⚠️  Found 2 incomplete download(s):
-
-📁 Folder: english/tr/video_13
-   URL: https://www.youtube.com/watch?v=...
-   ⚠️  Partial files: video_13.f401.mp4.part
-   Has video: False
-
-Do you want to clean up these incomplete downloads? (yes/no):
-```
-
-### Download Validation
-
-The batch downloader automatically validates each download:
-
-**Validation checks:**
-- ✅ Verifies media file exists (not just `.part` file)
-- ✅ Confirms file is not empty (> 1KB)
-- ✅ Detects incomplete downloads with `.part` extensions
-- ✅ Only marks as complete if all checks pass
-
-**If validation fails:**
-- The video is NOT marked as completed in progress tracker
-- You'll see an error message in the logs
-- The video will be retried on next run
-- You can use `fix_incomplete_downloads.py` to clean up
-
 ### Check Download Logs
 
 All activity is logged with timestamps (when logging is enabled):
@@ -526,7 +472,5 @@ For issues or questions:
 4. Test with `--dry-run` first
 
 ---
-
-**Happy Dataset Building! 🎉**
 
 Last Updated: November 2025
